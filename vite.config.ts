@@ -15,9 +15,9 @@ export default defineConfig({
   build: {
     minify: false,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: resolve(__dirname, "src/ad-compass.ts"),
       name: "AdCompass",
-      fileName: "index",
+      fileName: "ad-compass",
     },
     rollupOptions: {
       external: [],
@@ -61,5 +61,5 @@ export default defineConfig({
       "@/": path.resolve(__dirname, "./src/"),
     },
   },
-  plugins: [tsconfigPaths(), libInjectCss(),],
+  plugins: [tsconfigPaths(), libInjectCss()],
 });
