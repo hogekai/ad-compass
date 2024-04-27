@@ -1,18 +1,19 @@
+import { AdBlockDetector } from "@/adblock-detector";
+import { vi } from "vitest";
+
 export const mockAdBlocker = () => {
-  const blockAdIds = ["AdHeader", "AdContainer", "AD_Top", "homead", "ad-lead"];
-  const blockAdClasses = ["adsbygoogle"];
-
-  blockAdIds.forEach((blockAdId) => {
-    const ad = document.querySelector<HTMLElement>("#" + blockAdId);
-    if (ad) {
-      ad.style.display = "none";
-    }
-  });
-
-  blockAdClasses.forEach((blockAdClass) => {
-    const ad = document.querySelector<HTMLElement>("." + blockAdClass);
-    if (ad) {
-      ad.style.display = "none";
-    }
+  vi.spyOn(document.head, "appendChild").mockImplementation((node: Node) => {
+    const element = node as HTMLScriptElement;
+    setTimeout(
+      () =>
+        element.onerror &&
+        element.onerror(
+          new ErrorEvent("error", {
+            message: `Script load error for ${AdBlockDetector.DETECT_URL}`,
+          })
+        ),
+      0
+    );
+    return node;
   });
 };
