@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Sans+JP:wght@400;500&display=swap");
+
+@keyframes adCompassZoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes adCompassCenterZoomIn {
+  from {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes adCompassDetailIcon {
+  0%,
+  100% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+}
+
+#ad-compass-notification * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#ad-compass-notification {
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  position: fixed;
+  background-color: #111827;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
+  opacity: 1;
+  z-index: 10000;
+  animation: adCompassZoomIn 0.5s;
+  transform: scale(1);
+  line-height: 1.8;
+}
+
+#ad-compass-notification.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+#ad-compass-notification.top-center {
+  top: 20px;
+  left: 50%;
+  animation: adCompassCenterZoomIn 0.5s;
+  transform: scale(1) translateX(-50%);
+}
+
+#ad-compass-notification.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+#ad-compass-notification.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+#ad-compass-notification.bottom-center {
+  bottom: 20px;
+  left: 50%;
+  animation: adCompassCenterZoomIn 0.5s;
+  transform: scale(1) translateX(-50%);
+}
+
+#ad-compass-notification.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.ad-compass-notification-body {
+  margin-bottom: 10px !important;
+}
+
+.ad-compass-notification-desc {
+  font-size: 0.9rem;
+  color: #e4e4e4;
+}
+
+.ad-compass-notification-button {
+  all: unset;
+  border: 0;
+  cursor: pointer;
+  background: none;
+  color: white;
+  opacity: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  font-size: 0.85rem;
+  padding: 1px 5px !important;
+  transition: .3s ease;
+  text-decoration: underline;
+}
+
+.ad-compass-notification-button:hover {
+  opacity: 1;
+}
+
+.ad-compass-notification-button:focus {
+  outline: none !important;
+}
+
+.ad-compass-notification-close-icon {
+  color: white;
+  width: 18px;
+  height: 18px;
+  padding-top: 2px !important;
+}
+
+.ad-compass-notification-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad-compass-notification-timer {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #cccccc;
+}
