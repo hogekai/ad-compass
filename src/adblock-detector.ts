@@ -12,7 +12,7 @@ export class AdBlockDetector {
   public async detect(): Promise<boolean> {
     try {
       await loadScript(AdBlockDetector.DETECT_URL);
-      return window.adBlockDetect === true;
+      return window?.adBlockDetect !== false;
     } catch (e: unknown) {
       return true;
     }
