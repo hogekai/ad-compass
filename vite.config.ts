@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   build: {
+    emptyOutDir: false,
     minify: false,
     lib: {
       entry: resolve(__dirname, "src/ad-compass.ts"),
