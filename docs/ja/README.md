@@ -52,4 +52,21 @@ adCompass.run();
 
 これで終わり！
 
+もしくは、CDN
+
+スクリプトを設置します。
+```
+<script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
+```
+
+スクリプトを実行します。
+```
+<script>
+const adCompass = new AdCompass();
+adCompass.run();
+</script>
+```
+
+これで終わり！
+
 ### 通知をカスタマイズする

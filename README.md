@@ -33,3 +33,42 @@ AdCompass is a library designed to engage users who have ad blockers enabled. It
 - **Paid Subscription Model**: Often met with reluctance to pay by users, resulting in low conversion rates.
 
 The reason for choosing notifications is their friendly approach while educating users about the importance of ads.
+
+
+## 🚀 Getting Started
+
+* node.js environments are not supported.
+
+```
+npm i ad-compass
+```
+
+Once the package is installed, you can import the library using the import statement.
+```
+import AdCompass from "ad-compass";
+```
+
+Run the script.
+```
+const adCompass = new AdCompass();
+adCompass.run();
+```
+
+That's it!
+
+Or, using a CDN
+
+Set up the script.
+```
+<script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
+```
+
+Run the script.
+```
+<script>
+const adCompass = new AdCompass();
+adCompass.run();
+</script>
+```
+
+That's it!
