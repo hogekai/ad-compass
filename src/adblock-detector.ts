@@ -7,7 +7,7 @@ declare global {
 }
 export class AdBlockDetector {
   static readonly DETECT_URL =
-    "//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js";
+    "https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/prebid.js";
 
   public async detect(): Promise<boolean> {
     try {
