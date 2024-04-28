@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AdCompass ブラウザテスト用ページ</title>
 
-    <script src="/dist/ad-compass.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
     <script>
-        const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.TopLeft });
-        adCompass.run();
+      const adCompass = new AdCompass();
+      adCompass.run();
     </script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body></body>
 </html>
