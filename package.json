@@ -1,7 +1,7 @@
 {
   "name": "ad-compass",
   "private": false,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "scripts": {
     "dev": "vite",
     "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts && vite build",
@@ -9,7 +9,14 @@
     "preview": "vite preview",
     "test": "vitest"
   },
-  "keywords": ["adblock", "adblocker", "addetection", "adblockerdetection", "detectads", "adblockdetector"],
+  "keywords": [
+    "adblock",
+    "adblocker",
+    "addetection",
+    "adblockerdetection",
+    "detectads",
+    "adblockdetector"
+  ],
   "main": "./dist/ad-compass.umd.js",
   "module": "./dist/ad-compass.mjs",
   "types": "./dist/ad-compass.d.ts",
