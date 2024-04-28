@@ -20,7 +20,8 @@
   "exports": {
     ".": {
       "require": "./dist/ad-compass.umd.js",
-      "import": "./dist/ad-compass.mjs"
+      "import": "./dist/ad-compass.mjs",
+      "types": "./dist/ad-compass.d.ts"
     }
   },
   "author": "kai",
