@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdCompass ブラウザテスト用ページ</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
+    <script src="/dist/ad-compass.umd.js"></script>
     <script>
-        const adCompass = new AdCompass();
+        const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.TopLeft });
         adCompass.run();
     </script>
 </head>
