@@ -2,7 +2,6 @@
   "name": "ad-compass",
   "private": false,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts && vite build",
@@ -10,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest"
   },
-  "main": "./dist/ad-compass.umd.cjs",
+  "main": "./dist/ad-compass.umd.js",
   "module": "./dist/ad-compass.js",
   "types": "./dist/ad-compass.d.ts",
   "license": "MIT",
@@ -20,7 +19,7 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/ad-compass.umd.cjs",
+      "require": "./dist/ad-compass.umd.js",
       "import": "./dist/ad-compass.js"
     }
   },
