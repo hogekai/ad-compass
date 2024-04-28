@@ -53,6 +53,7 @@
     "vitest": "^1.5.2"
   },
   "dependencies": {
-    "i18next": "^23.11.2"
+    "i18next": "^23.11.2",
+    "i18next-browser-languagedetector": "^7.2.1"
   }
 }

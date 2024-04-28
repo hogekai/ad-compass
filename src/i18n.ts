@@ -1,6 +1,9 @@
 import i18next from "i18next";
+import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 
-i18next.init({
+i18next
+.use(I18nextBrowserLanguageDetector)
+.init({
   debug: false,
   fallbackLng: "en",
   resources: {
@@ -36,7 +39,5 @@ i18next.init({
     },
   },
 });
-
-i18next.changeLanguage(navigator?.language || "en");
 
 export const i18n = i18next;

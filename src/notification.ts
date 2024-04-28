@@ -41,7 +41,7 @@ export class Notification {
 
     const messageP = document.createElement("p");
     messageP.className = "ad-compass-notification-desc";
-    messageP.innerHTML = this.message ? this.message : this.getMessage();
+    messageP.innerHTML = this.message ?? this.getMessage();
 
     const footerDiv = document.createElement("div");
     footerDiv.className = "ad-compass-notification-footer";
