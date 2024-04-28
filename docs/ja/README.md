@@ -110,10 +110,10 @@ adCompass.run();
 
 デフォルトでTopCenterに配置される通知の位置を変更したい場合があるかもしれません。
 
-``
+```javascript
 const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.TopLeft });
 adCompass.run();
-``
+```
 
 これで終わり！
 
