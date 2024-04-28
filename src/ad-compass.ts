@@ -11,10 +11,13 @@ import { Notification } from "./notification";
 const defaultOptions: AdCompassOptions = {
   delay: 7000,
   category: AdCompassSiteCategories.newsSite,
-  position: AdCompassNotificationPosition.bottomCenter,
+  position: AdCompassNotificationPosition.topCenter,
 };
 
 export default class AdCompass {
+  static readonly SiteCategories = AdCompassSiteCategories;
+  static readonly NotificationPosition = AdCompassNotificationPosition;
+
   private options: AdCompassOptions;
 
   public constructor(options?: Partial<AdCompassOptions>) {
@@ -52,7 +55,7 @@ export default class AdCompass {
     }
   }
 
-  private isBrowser() {
+  private isBrowser(): boolean {
     return typeof window !== "undefined";
   }
 }
