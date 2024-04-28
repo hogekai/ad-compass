@@ -1,7 +1,7 @@
 # AdCompass: A Friendly Approach to Ad Blocking
 
-AdCompassはI18nに対応しており、日本人向けのREADMEがあります。是非！
-<a href="./docs/ja/README.md">日本語README</a>
+AdCompass は I18n に対応しており、日本人向けの README があります。是非！
+<a href="./docs/ja/README.md">日本語 README</a>
 
 ## 👀 Problem
 
@@ -34,41 +34,111 @@ AdCompass is a library designed to engage users who have ad blockers enabled. It
 
 The reason for choosing notifications is their friendly approach while educating users about the importance of ads.
 
-
 ## 🚀 Getting Started
 
-* node.js environments are not supported.
+- We do not support the node.js environment.
 
-```
+```bash
 npm i ad-compass
 ```
 
 Once the package is installed, you can import the library using the import statement.
-```
+
+```javascript
 import AdCompass from "ad-compass";
 ```
 
-Run the script.
-```
+Execute the script.
+
+```javascript
 const adCompass = new AdCompass();
 adCompass.run();
 ```
 
 That's it!
 
-Or, using a CDN
+Or, using CDN
 
 Set up the script.
-```
+
+```html
 <script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
 ```
 
-Run the script.
-```
+Execute the script.
+
+```html
 <script>
-const adCompass = new AdCompass();
-adCompass.run();
+  const adCompass = new AdCompass();
+  adCompass.run();
 </script>
 ```
 
 That's it!
+
+### Customize Notifications
+
+#### Categories
+
+You can change the messages displayed depending on the category of your site!
+For example, suppose you are running a technology-related site.
+
+```javascript
+const adCompass = new AdCompass({ category: AdCompass.SiteCategories.technologySite });
+adCompass.run();
+```
+
+That's it!
+
+AdCompass supports the following categories, which you can access via AdCompass.SiteCategories.
+
+```typescript
+enum AdCompassSiteCategories {
+  newsSite, // News site
+  entertainmentSite, // Entertainment site
+  educationalSite, // Educational site
+  lifestyleSite, // Lifestyle site
+  technologySite, // Technology site
+}
+```
+
+#### Change Messages
+
+Alternatively, you might want to set a custom message for your site.
+
+```javascript
+const adCompass = new AdCompass({ message: 'Hello, world!' });
+adCompass.run();
+```
+
+That's it!
+
+#### Change Notification Position
+
+If you want to change the position of the notifications, which are by default set to TopCenter.
+
+```javascript
+const adCompass = new AdCompass({
+  position: AdCompass.NotificationPosition.TopLeft,
+});
+adCompass.run();
+```
+
+That's it!
+
+AdCompass supports the following positions, which you can access via AdCompass.NotificationPosition.
+
+```typescript
+enum AdCompassNotificationPosition {
+  topLeft = "top-left",
+  topCenter = "top-center",
+  topRight = "top-right",
+  bottomLeft = "bottom-left",
+  bottomCenter = "bottom-center",
+  bottomRight = "bottom-right",
+}
+```
+
+## Finally
+
+AdCompass supports both users who use ad blockers and media looking to monetize their sites, hoping to make the web a better place for both!

@@ -40,12 +40,12 @@ npm i ad-compass
 ```
 
 パッケージがインストールされたら、import文を使用してライブラリをインポートできます。
-```
+```javascript
 import AdCompass from "ad-compass";
 ```
 
 スクリプトを実行します。
-```
+```javascript
 const adCompass = new AdCompass();
 adCompass.run();
 ```
@@ -55,12 +55,12 @@ adCompass.run();
 もしくは、CDN
 
 スクリプトを設置します。
-```
+```html
 <script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
 ```
 
 スクリプトを実行します。
-```
+```html
 <script>
 const adCompass = new AdCompass();
 adCompass.run();
@@ -70,3 +70,67 @@ adCompass.run();
 これで終わり！
 
 ### 通知をカスタマイズする
+
+#### カテゴリー
+
+サイトのカテゴリーによって表示するメッセージを変更できます！
+例えばあなたがテクノロジー関係のサイトを運営しているとします。
+
+```javascript
+const adCompass = new AdCompass({ category: AdCompass.SiteCategories.technologySite });
+adCompass.run();
+```
+
+これで終わり！
+
+AdCompassは下記のカテゴリをサポートしており、`AdCompass.SiteCategories`からアクセスできます。
+
+```typescript
+enum AdCompassSiteCategories {
+  newsSite, // ニュースサイト
+  entertainmentSite, // エンターテインメントサイト
+  educationalSite, // 教育サイト
+  lifestyleSite, // ライフスタイルサイト
+  technologySite, // テクノロジーサイト
+}
+```
+
+### メッセージを変更する
+
+あるいは、サイト独自のメッセージを設定したい場合があるかもしれません。
+
+```javascript
+const adCompass = new AdCompass({ message: 'こんにちは、世界！' });
+adCompass.run();
+```
+
+これで終わり！
+
+### 通知の位置を変更する
+
+デフォルトでTopCenterに配置される通知の位置を変更したい場合があるかもしれません。
+
+``
+const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.TopLeft });
+adCompass.run();
+``
+
+これで終わり！
+
+AdCompassは下記の位置をサポートしており、`AdCompass.NotificationPosition`からアクセスできます。
+
+```typescript
+enum AdCompassNotificationPosition {
+  topLeft = "top-left",
+  topCenter = "top-center",
+  topRight = "top-right",
+  bottomLeft = "bottom-left",
+  bottomCenter = "bottom-center",
+  bottomRight = "bottom-right",
+}
+```
+
+## 最後に
+
+AdCompassは広告ブロックを使用するユーザー、サイトの収益化を図りたいメディア、その両方を応援したいと考えています。
+両者にとってWebがいいものになることを祈っています！
