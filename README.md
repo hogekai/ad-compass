@@ -1,5 +1,7 @@
 # AdCompass: A Friendly Approach to Ad Blocking
 
+AdCompass - A Friendly Approach to Ad Blocking | 広告ブロックへの優しい対応
+
 AdCompass は I18n に対応しており、日本人向けの README があります。是非！
 <a href="./docs/ja/README.md">日本語 README</a>
 
