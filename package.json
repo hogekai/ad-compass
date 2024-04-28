@@ -5,11 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:check": "tsc -p tsconfig.build.json",
+    "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts && vite build",
+    "build:type": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts",
     "preview": "vite preview",
     "test": "vitest"
   },
+  "main": "./dist/ad-compass.umd.cjs",
+  "module": "./dist/ad-compass.js",
+  "types": "./dist/ad-compass.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hogekai/ad-compass.git"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/ad-compass.umd.cjs",
+      "import": "./dist/ad-compass.js"
+    }
+  },
+  "author": "kai",
   "files": [
     "dist"
   ],
@@ -19,6 +34,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/jest-dom": "^6.4.2",
     "autoprefixer": "^10.4.19",
+    "dts-bundle-generator": "^9.5.1",
     "jsdom": "^24.0.0",
     "path": "^0.12.7",
     "typescript": "^5.2.2",
