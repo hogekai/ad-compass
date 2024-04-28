@@ -22,6 +22,13 @@ export default class AdCompass {
   }
 
   public async run() {
+    if (!this.isBrowser()) {
+      console.error(
+        "Server side is not supported. Please use library only on client side."
+      );
+      return;
+    }
+
     await waitForDomReady();
     const adBlock = await this.adBlockDetect();
 
@@ -43,5 +50,9 @@ export default class AdCompass {
       const adBlockDetector = new AdBlockDetector();
       return await adBlockDetector.detect();
     }
+  }
+
+  private isBrowser() {
+    return typeof window !== "undefined";
   }
 }
