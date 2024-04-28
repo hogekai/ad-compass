@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest"
   },
+  "keywords": ["adblock", "adblocker", "addetection", "adblockerdetection", "detectads", "adblockdetector"],
   "main": "./dist/ad-compass.umd.js",
   "module": "./dist/ad-compass.mjs",
   "types": "./dist/ad-compass.d.ts",
