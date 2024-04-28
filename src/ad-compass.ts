@@ -32,6 +32,10 @@ export default class AdCompass {
       return;
     }
 
+    if (!this.canExecuteScript()) {
+      return ;
+    }
+
     await waitForDomReady();
     const adBlock = await this.adBlockDetect();
 
@@ -57,5 +61,21 @@ export default class AdCompass {
 
   private isBrowser(): boolean {
     return typeof window !== "undefined";
+  }
+
+  private canExecuteScript(): boolean {
+    const lastExecution = localStorage.getItem('adCompassLastExecution');
+    if (lastExecution) {
+      const lastDate = new Date(lastExecution);
+      const currentDate = new Date();
+      const oneWeek = 7 * 24 * 60 * 60 * 1000; // 1週間のミリ秒
+  
+      if (currentDate.getTime() - lastDate.getTime() < oneWeek) {
+        return false;
+      }
+    }
+
+    localStorage.setItem('adCompassLastExecution', new Date().toISOString());
+    return true;
   }
 }
