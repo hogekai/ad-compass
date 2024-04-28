@@ -10,7 +10,7 @@
     "test": "vitest"
   },
   "main": "./dist/ad-compass.umd.js",
-  "module": "./dist/ad-compass.js",
+  "module": "./dist/ad-compass.mjs",
   "types": "./dist/ad-compass.d.ts",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
   "exports": {
     ".": {
       "require": "./dist/ad-compass.umd.js",
-      "import": "./dist/ad-compass.js"
+      "import": "./dist/ad-compass.mjs"
     }
   },
   "author": "kai",
