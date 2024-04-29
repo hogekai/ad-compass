@@ -24,6 +24,10 @@ export default class AdCompass {
     this.options = { ...defaultOptions, ...options };
   }
 
+  public getOptions(): AdCompassOptions {
+    return this.options;
+  }
+
   public async run() {
     if (!this.isBrowser()) {
       console.error(
