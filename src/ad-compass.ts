@@ -12,6 +12,7 @@ const defaultOptions: AdCompassOptions = {
   delay: 7000,
   category: AdCompassSiteCategories.newsSite,
   position: AdCompassNotificationPosition.topCenter,
+  daySpan: 7,
 };
 
 export default class AdCompass {
@@ -72,9 +73,9 @@ export default class AdCompass {
     if (lastExecution) {
       const lastDate = new Date(lastExecution);
       const currentDate = new Date();
-      const oneWeek = 7 * 24 * 60 * 60 * 1000; // 1週間のミリ秒
+      const day = this.options.daySpan * 24 * 60 * 60 * 1000;
   
-      if (currentDate.getTime() - lastDate.getTime() < oneWeek) {
+      if (currentDate.getTime() - lastDate.getTime() < day) {
         return false;
       }
     }

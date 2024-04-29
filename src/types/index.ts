@@ -3,6 +3,7 @@ export type AdCompassOptions = {
   category: AdCompassSiteCategories;
   position: AdCompassNotificationPosition;
   message?: string;
+  daySpan: number;
 };
 
 export enum AdCompassSiteCategories {
