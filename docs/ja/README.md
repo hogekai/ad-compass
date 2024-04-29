@@ -71,17 +71,15 @@ adCompass.run();
 
 ### 通知をカスタマイズする
 
-#### カテゴリー
+#### カテゴリーごとのデフォルトメッセージ
 
-サイトのカテゴリーによって表示するメッセージを変更できます！
+AdCompassでは、サイトのカテゴリーによって表示されるメッセージがデフォルトで用意されています。
 例えばあなたがテクノロジー関係のサイトを運営しているとします。
 
 ```javascript
 const adCompass = new AdCompass({ category: AdCompass.SiteCategories.technologySite });
 adCompass.run();
 ```
-
-これで終わり！
 
 AdCompassは下記のカテゴリをサポートしており、`AdCompass.SiteCategories`からアクセスできます。
 
@@ -104,18 +102,14 @@ const adCompass = new AdCompass({ message: 'こんにちは、世界！' });
 adCompass.run();
 ```
 
-これで終わり！
-
 ### 通知の位置を変更する
 
 デフォルトでTopCenterに配置される通知の位置を変更したい場合があるかもしれません。
 
 ```javascript
-const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.TopLeft });
+const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.topLeft });
 adCompass.run();
 ```
-
-これで終わり！
 
 AdCompassは下記の位置をサポートしており、`AdCompass.NotificationPosition`からアクセスできます。
 
@@ -128,6 +122,40 @@ enum AdCompassNotificationPosition {
   bottomCenter = "bottom-center",
   bottomRight = "bottom-right",
 }
+```
+
+### ページを読み込んでから通知が表示されるまでの時間を調整する
+
+通知が表示されるまでの時間をミリ単位で調節できます。
+デフォルトは7秒です。
+
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+### 同じサイトで再度通知が表示されるまでのスパンを調整する
+
+同じ通知でユーザーにストレスを与えないために、再度表示されるまでのスパン (日単位) を調整できます。
+デフォルトは7日間です。
+
+```javascript
+const adCompass = new AdCompass({ daySpan: 1, });
+adCompass.run();
+```
+
+### オプション
+
+用意されているオプション一覧です。
+
+```javascript
+type AdCompassOptions = {
+  delay: number; // 表示されるまでの時間 (ミリ単位)
+  category: AdCompassSiteCategories; // サイトのカテゴリー
+  position: AdCompassNotificationPosition; // 通知の位置
+  message?: string; // カスタムメッセージ
+  daySpan: number; // 通知が再度表示されるまでのスパン (日単位)
+};
 ```
 
 ## 最後に

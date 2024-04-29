@@ -80,19 +80,18 @@ That's it!
 
 ### Customize Notifications
 
-#### Categories
+#### Default Messages by Category
 
-You can change the messages displayed depending on the category of your site!
-For example, suppose you are running a technology-related site.
+At AdCompass, default messages are provided according to the category of the site. For instance, if you operate a technology-related site:
 
 ```javascript
-const adCompass = new AdCompass({ category: AdCompass.SiteCategories.technologySite });
+const adCompass = new AdCompass({
+  category: AdCompass.SiteCategories.technologySite,
+});
 adCompass.run();
 ```
 
-That's it!
-
-AdCompass supports the following categories, which you can access via AdCompass.SiteCategories.
+AdCompass supports the following categories, which can be accessed through `AdCompass.SiteCategories`:
 
 ```typescript
 enum AdCompassSiteCategories {
@@ -104,31 +103,27 @@ enum AdCompassSiteCategories {
 }
 ```
 
-#### Change Messages
+#### Changing the Message
 
-Alternatively, you might want to set a custom message for your site.
+You may want to set a custom message for your site:
 
 ```javascript
-const adCompass = new AdCompass({ message: 'Hello, world!' });
+const adCompass = new AdCompass({ message: "Hello, world!" });
 adCompass.run();
 ```
 
-That's it!
+#### Changing the Notification Position
 
-#### Change Notification Position
-
-If you want to change the position of the notifications, which are by default set to TopCenter.
+You might want to change the position of the notification, which is set to TopCenter by default:
 
 ```javascript
 const adCompass = new AdCompass({
-  position: AdCompass.NotificationPosition.TopLeft,
+  position: AdCompass.NotificationPosition.topLeft,
 });
 adCompass.run();
 ```
 
-That's it!
-
-AdCompass supports the following positions, which you can access via AdCompass.NotificationPosition.
+AdCompass supports the following positions, accessible via `AdCompass.NotificationPosition`:
 
 ```typescript
 enum AdCompassNotificationPosition {
@@ -139,6 +134,29 @@ enum AdCompassNotificationPosition {
   bottomCenter = "bottom-center",
   bottomRight = "bottom-right",
 }
+```
+
+### Adjusting the Time Until the Notification Appears After Page Load
+
+You can adjust the time until the notification appears in milliseconds. The default is 7 seconds:
+
+```javascript
+const adCompass = new AdCompass({ daySpan: 1 });
+adCompass.run();
+```
+
+### Options
+
+Here is a list of available options:
+
+```javascript
+type AdCompassOptions = {
+  delay: number, // Time until the notification appears (in milliseconds)
+  category: AdCompassSiteCategories, // Site category
+  position: AdCompassNotificationPosition, // Notification position
+  message?: string, // Custom message
+  daySpan: number, // Span until the notification reappears (in days)
+};
 ```
 
 ## Finally
