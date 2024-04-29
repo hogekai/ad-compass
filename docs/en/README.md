@@ -31,6 +31,23 @@ AdCompass is a library designed to engage users who have ad blockers enabled. It
 
 The reason for choosing notifications is their friendly approach while educating users about the importance of ads.
 
+## 📚 Compatibility
+
+Confirmed Ad Blockers:
+
+- AdBlock
+- AdGuard
+- Brave Shield
+
+Supported Languages:
+
+- English
+- Japanese
+- Spanish
+- Chinese
+- French
+- German
+
 ## 🚀 Getting Started
 
 * We do not support the node.js environment.
