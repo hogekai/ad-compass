@@ -52,22 +52,22 @@ Langues prises en charge :
 
 * Nous ne prenons pas en charge l'environnement node.js.
 
-]]]bash
+```bash
 npm i ad-compass
-]]]
+```
 
 Une fois le paquet installé, vous pouvez importer la bibliothèque en utilisant l'instruction d'importation.
 
-]]]javascript
+```javascript
 import AdCompass from "ad-compass";
-]]]
+```
 
 Exécutez le script.
 
-]]]javascript
+```javascript
 const adCompass = new AdCompass();
 adCompass.run();
-]]]
+```
 
 C'est tout !
 
@@ -75,18 +75,18 @@ Ou, en utilisant CDN
 
 Configurez le script.
 
-]]]html
+```html
 <script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
-]]]
+```
 
 Exécutez le script.
 
-]]]html
+```html
 <script>
 const adCompass = new AdCompass();
 adCompass.run();
 </script>
-]]]
+```
 
 C'est tout !
 
@@ -96,14 +96,14 @@ C'est tout !
 
 Chez AdCompass, des messages par défaut sont fournis selon la catégorie du site. Par exemple, si vous exploitez un site lié à la technologie :
 
-]]]javascript
+```javascript
 const adCompass = new AdCompass({ category: AdCompass.SiteCategories.technologySite });
 adCompass.run();
-]]]
+```
 
 AdCompass prend en charge les catégories suivantes, accessibles via `AdCompass.SiteCategories` :
 
-]]]typescript
+```typescript
 enum AdCompassSiteCategories {
   newsSite, // Site d'actualités
   entertainmentSite, // Site de divertissement
@@ -111,29 +111,29 @@ enum AdCompassSiteCategories {
   lifestyleSite, // Site de style de vie
   technologySite, // Site technologique
 }
-]]]
+```
 
 #### Modifier le message
 
 Vous pouvez souhaiter définir un message personnalisé pour votre site :
 
-]]]javascript
+```javascript
 const adCompass = new AdCompass({ message: 'Bonjour, monde !' });
 adCompass.run();
-]]]
+```
 
 #### Modifier la position de la notification
 
 Vous pouvez vouloir changer la position de la notification, qui est par défaut en haut au centre :
 
-]]]javascript
+```javascript
 const adCompass = new AdCompass({ position: AdCompass.NotificationPosition.topLeft });
 adCompass.run();
-]]]
+```
 
 AdCompass prend en charge les positions suivantes, accessibles via `AdCompass.NotificationPosition` :
 
-]]]typescript
+```typescript
 enum AdCompassNotificationPosition {
   topLeft = "en haut à gauche",
   topCenter = "en haut au centre",
@@ -142,11 +142,20 @@ enum AdCompassNotificationPosition {
   bottomCenter = "en bas au centre",
   bottomRight = "en bas à droite",
 }
-]]]
+```
 
-#### Ajuster le temps avant que la notification n'apparaisse après le chargement de la page
+#### Ajuster le temps avant l'affichage de la notification après le chargement de la page
+Vous pouvez ajuster le temps avant l'affichage de la notification en millisecondes.
+La valeur par défaut est de 7 secondes.
 
-Vous pouvez ajuster le temps avant que la notification n'apparaisse en millisecondes. Le délai par défaut est de 7 secondes :
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### Ajuster la fréquence de réapparition de la notification sur le même site
+Pour éviter de stresser l'utilisateur avec la même notification, vous pouvez ajuster la fréquence (en jours) avant qu'elle ne réapparaisse.
+La valeur par défaut est de 7 jours.
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1, });
@@ -154,15 +163,15 @@ adCompass.run();
 ```
 
 #### Options
-Voici une liste des options disponibles :
+Voici une liste des options disponibles.
 
 ```javascript
 type AdCompassOptions = {
-  delay: number; // Temps avant que la notification n'apparaisse (en millisecondes)
-  category: AdCompassSiteCategories; // Catégorie du site
-  position: AdCompassNotificationPosition; // Position de la notification
-  message?: string; // Message personnalisé
-  daySpan: number; // Intervalle avant que la notification ne réapparaisse (en jours)
+delay: number; // Temps avant l'affichage de la notification (en millisecondes)
+category: AdCompassSiteCategories; // Catégorie du site
+position: AdCompassNotificationPosition; // Position de la notification
+message?: string; // Message personnalisé
+daySpan: number; // Fréquence de réapparition de la notification (en jours)
 };
 ```
 

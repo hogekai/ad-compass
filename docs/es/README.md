@@ -144,26 +144,34 @@ enum AdCompassNotificationPosition {
 }
 ```
 
-### Ajustando el Tiempo Hasta que Aparece la Notificación Después de la Carga de la Página
+#### Ajustar el tiempo hasta que se muestre la notificación después de cargar la página
+Puedes ajustar el tiempo hasta que se muestre la notificación en milisegundos.
+El valor predeterminado es de 7 segundos.
 
-Puedes ajustar el tiempo hasta que aparece la notificación en milisegundos. El predeterminado es de 7 segundos:
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### Ajustar el intervalo hasta que la notificación se muestre de nuevo en el mismo sitio
+Para evitar estresar al usuario con la misma notificación, puedes ajustar el intervalo (en días) hasta que se muestre de nuevo.
+El valor predeterminado es de 7 días.
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1, });
 adCompass.run();
 ```
 
-### Opciones
-
-Aquí tienes una lista de opciones disponibles:
+#### Opciones
+Aquí está la lista de opciones disponibles.
 
 ```javascript
 type AdCompassOptions = {
-  delay: number; // Tiempo hasta que aparece la notificación (en milisegundos)
-  category: AdCompassSiteCategories; // Categoría del sitio
-  position: AdCompassNotificationPosition; // Posición de la notificación
-  message?: string; // Mensaje personalizado
-  daySpan: number; // Intervalo hasta que la notificación reaparece (en días)
+delay: number; // Tiempo hasta que se muestre la notificación (en milisegundos)
+category: AdCompassSiteCategories; // Categoría del sitio
+position: AdCompassNotificationPosition; // Posición de la notificación
+message?: string; // Mensaje personalizado
+daySpan: number; // Intervalo hasta que la notificación se muestre de nuevo (en días)
 };
 ```
 

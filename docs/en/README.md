@@ -144,26 +144,34 @@ enum AdCompassNotificationPosition {
 }
 ```
 
-### Adjusting the Time Until the Notification Appears After Page Load
+#### Adjust the time until the notification is displayed after the page is loaded
+You can adjust the time until the notification is displayed in milliseconds.
+The default is 7 seconds.
 
-You can adjust the time until the notification appears in milliseconds. The default is 7 seconds:
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### Adjust the span until the notification is displayed again on the same site
+To avoid stressing the user with the same notification, you can adjust the span (in days) until it is displayed again.
+The default is 7 days.
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1, });
 adCompass.run();
 ```
 
-### Options
-
-Here is a list of available options:
+#### Options
+Here is a list of available options.
 
 ```javascript
 type AdCompassOptions = {
-  delay: number; // Time until the notification appears (in milliseconds)
-  category: AdCompassSiteCategories; // Site category
-  position: AdCompassNotificationPosition; // Notification position
-  message?: string; // Custom message
-  daySpan: number; // Span until the notification reappears (in days)
+delay: number; // Time until the notification is displayed (in milliseconds)
+category: AdCompassSiteCategories; // Site category
+position: AdCompassNotificationPosition; // Notification position
+message?: string; // Custom message
+daySpan: number; // Span until the notification is displayed again (in days)
 };
 ```
 

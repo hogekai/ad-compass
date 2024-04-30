@@ -144,26 +144,34 @@ enum AdCompassNotificationPosition {
 }
 ```
 
-### Anpassen der Zeit bis zum Erscheinen der Benachrichtigung nach dem Laden der Seite
+#### Zeit bis zur Anzeige der Benachrichtigung nach dem Laden der Seite anpassen
+Sie können die Zeit bis zur Anzeige der Benachrichtigung in Millisekunden anpassen.
+Der Standardwert beträgt 7 Sekunden.
 
-Sie können die Zeit bis zum Erscheinen der Benachrichtigung in Millisekunden einstellen. Die Standardeinstellung ist 7 Sekunden:
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### Intervall bis zur erneuten Anzeige der Benachrichtigung auf derselben Webseite anpassen
+Um den Benutzer nicht mit derselben Benachrichtigung zu belasten, können Sie das Intervall (in Tagen) bis zur erneuten Anzeige anpassen.
+Der Standardwert beträgt 7 Tage.
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1, });
 adCompass.run();
 ```
 
-### Optionen
-
-Hier ist eine Liste der verfügbaren Optionen:
+#### Optionen
+Hier ist eine Liste der verfügbaren Optionen.
 
 ```javascript
 type AdCompassOptions = {
-  delay: number; // Zeit bis zum Erscheinen der Benachrichtigung (in Millisekunden)
-  category: AdCompassSiteCategories; // Kategorie der Website
-  position: AdCompassNotificationPosition; // Position der Benachrichtigung
-  message?: string; // Benutzerdefinierte Nachricht
-  daySpan: number; // Spanne, bis die Benachrichtigung erneut erscheint (in Tagen)
+delay: number; // Zeit bis zur Anzeige der Benachrichtigung (in Millisekunden)
+category: AdCompassSiteCategories; // Kategorie der Webseite
+position: AdCompassNotificationPosition; // Position der Benachrichtigung
+message?: string; // Benutzerdefinierte Nachricht
+daySpan: number; // Intervall bis zur erneuten Anzeige der Benachrichtigung (in Tagen)
 };
 ```
 

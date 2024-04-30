@@ -2,8 +2,8 @@
 
 AdCompass - A Friendly Approach to Ad Blocking | 広告ブロックへの優しい対応 | Un enfoque amistoso del bloqueo de anuncios | 广告屏蔽的友好方法 | Une approche amicale du blocage des publicités | Eine freundliche Annäherung an die Werbeblockierung
 
-日本人向けREADME: <a href="./docs/ja/README.md">README</a>
-LÉAME para España:  <a href="./docs/es/README.md">README</a>
+日本人向け README: <a href="./docs/ja/README.md">README</a>
+LÉAME para España: <a href="./docs/es/README.md">README</a>
 中国的 README: <a href="./docs/zh/README.md">README</a>
 README pour la France: <a href="./docs/fr/README.md">README</a>
 README für Deutschland: <a href="./docs/de/README.md">README</a>
@@ -156,26 +156,37 @@ enum AdCompassNotificationPosition {
 }
 ```
 
-### Adjusting the Time Until the Notification Appears After Page Load
+#### Adjust the time until the notification is displayed after the page is loaded
 
-You can adjust the time until the notification appears in milliseconds. The default is 7 seconds:
+You can adjust the time until the notification is displayed in milliseconds.
+The default is 7 seconds.
+
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### Adjust the span until the notification is displayed again on the same site
+
+To avoid stressing the user with the same notification, you can adjust the span (in days) until it is displayed again.
+The default is 7 days.
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1 });
 adCompass.run();
 ```
 
-### Options
+#### Options
 
-Here is a list of available options:
+Here is a list of available options.
 
 ```javascript
 type AdCompassOptions = {
-  delay: number, // Time until the notification appears (in milliseconds)
+  delay: number, // Time until the notification is displayed (in milliseconds)
   category: AdCompassSiteCategories, // Site category
   position: AdCompassNotificationPosition, // Notification position
   message?: string, // Custom message
-  daySpan: number, // Span until the notification reappears (in days)
+  daySpan: number, // Span until the notification is displayed again (in days)
 };
 ```
 

@@ -142,28 +142,38 @@ enum AdCompassNotificationPosition {
 }
 ```
 
-#### 调整页面加载后通知出现的时间
+调整页面加载后显示通知的时间
+您可以以毫秒为单位调整显示通知的时间。
+默认为7秒。
 
-您可以调整通知出现的时间（以毫秒为单位）。默认是 7 秒：
+```javascript
+const adCompass = new AdCompass({ delay: 1000 });
+adCompass.run();
+```
+
+#### 调整同一网站上再次显示通知的间隔
+为了避免同一通知给用户带来压力，您可以调整通知再次显示的间隔（以天为单位）。
+默认为7天。
 
 ```javascript
 const adCompass = new AdCompass({ daySpan: 1, });
 adCompass.run();
 ```
 
-### 选项
+#### 选项
+这里列出了可用的选项。
 
-以下是可用选项列表：
-
-```typescript
+```javascript
 type AdCompassOptions = {
-  delay: number; // 通知出现的时间（毫秒）
-  category: AdCompassSiteCategories; // 网站类别
-  position: AdCompassNotificationPosition; // 通知位置
-  message?: string; // 自定义消息
-  daySpan: number; // 通知重新出现的间隔时间（天）
+delay: number; // 显示通知的时间（毫秒）
+category: AdCompassSiteCategories; // 网站类别
+position: AdCompassNotificationPosition; // 通知位置
+message?: string; // 自定义消息
+daySpan: number; // 再次显示通知的间隔（天数）
 };
 ```
+
+
 
 ## 最后
 
