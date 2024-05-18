@@ -22,7 +22,11 @@ export default class AdCompass {
   private options: AdCompassOptions;
 
   public constructor(options?: Partial<AdCompassOptions>) {
-    this.options = { ...defaultOptions, ...options };
+    if (options) {
+      this.options = { ...defaultOptions, ...options };
+    } else {
+      this.options = defaultOptions;
+    }
   }
 
   public getOptions(): AdCompassOptions {
