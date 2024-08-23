@@ -33,17 +33,10 @@ export default defineConfig({
                   targets: "> 0.25%, not dead, IE 11",
                   useBuiltIns: "usage",
                   modules: false,
-                  corejs: false,
+                  corejs: true,
                 },
               ],
             ],
-          }),
-          terser({
-            mangle: true,
-            toplevel: true,
-            compress: {
-              unused: true,
-            },
           }),
         ],
       },
