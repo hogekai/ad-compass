@@ -56,17 +56,17 @@ export class EventEmitter {
     this.listeners.get(eventType)!.push(listener);
   }
 
-  public off(event: string, listener: EventCallback) {
-    const offToListeners = this.listeners.get(event);
+  public off<T extends AdCompassEventType>(eventType: AdCompassEventType, listener: EventCallback<T>) {
+    const offToListeners = this.listeners.get(eventType);
     if (offToListeners) {
-      const existingListeners = this.listeners.get(event);
+      const existingListeners = this.listeners.get(eventType);
 
       if (existingListeners) {
         const filteredListeners = existingListeners.filter(
           (existingListener) => existingListener !== listener
         );
 
-        this.listeners.set(event, filteredListeners);
+        this.listeners.set(eventType, filteredListeners);
       }
     }
   }
