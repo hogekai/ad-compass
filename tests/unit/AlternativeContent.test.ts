@@ -1,6 +1,5 @@
 import { HTMLAlternativeContent } from "@/alternative-content/HTMLAlternativeContent";
 import { ImageAlternativeContent } from "@/alternative-content/ImageAlternativeContent";
-import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 import { describe, expect, it } from "vitest";
 
 describe("AlternativeContent", () => {
