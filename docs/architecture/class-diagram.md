@@ -69,7 +69,7 @@ classDiagram
 
     class AdCompassError extends Error {
         +code: ErrorCode
-        +details: any
+        +message: string
     }
 
     AdCompass *-- AlternativeContent
@@ -98,7 +98,7 @@ classDiagram
     class ErrorCode {
         <<enumeration>>
         INITIALIZATION_FAILED
-        AD_BLOCK_DETECTION_FAILED
-        CONTENT_DISPLAY_FAILED
+        CONTENT_PLACE_FAILED
+        UNKNOWN
     }
 ```
