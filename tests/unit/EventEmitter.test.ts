@@ -14,10 +14,23 @@ describe('EventEmitter', () => {
     });
 
     it('should listen to events', () => {
-        // test code
+        const emitter = new EventEmitter();
+
+        const callback = vi.fn();
+        emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
+        emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
+
+        expect(callback).toHaveBeenCalled();
     });
 
     it('should remove listeners', () => {
-        // test code
+        const emitter = new EventEmitter();
+
+        const callback = vi.fn();
+        emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
+        emitter.off(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
+        emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
+
+        expect(callback).not.toHaveBeenCalled();
     }); 
 });
