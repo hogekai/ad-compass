@@ -1,3 +1,4 @@
+import { HTMLAlternativeContent } from "@/alternative-content/HTMLAlternativeContent";
 import { describe, expect, it } from "vitest";
 
 describe("AlternativeContent", () => {
