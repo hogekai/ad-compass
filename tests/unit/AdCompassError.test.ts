@@ -1,3 +1,5 @@
+import { AdCompassError } from "@/AdCompassError";
+import { ErrorCode } from "@/types/ErrorCode";
 import { describe, expect, it } from "vitest";
 
 describe("AdCompassError", () => {
