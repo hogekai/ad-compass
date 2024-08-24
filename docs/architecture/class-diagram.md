@@ -34,7 +34,9 @@ classDiagram
     }
 
     class ImageAlternativeContent {
-        -imageUrl: string
+        -src: string
+        -alt: string
+        -style: string
         +toHTML(): void
         +getType(): string
     }
