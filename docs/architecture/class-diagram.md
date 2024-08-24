@@ -23,19 +23,19 @@ classDiagram
 
     class AlternativeContent  {
         <<interface>>
-        +render(): void
+        +toHTML(): void
         +getType(): string
     }
 
     class HTMLAlternativeContent {
         -content: string
-        +render(): void
+        +toHTML(): void
         +getType(): string
     }
 
     class ImageAlternativeContent {
         -imageUrl: string
-        +render(): void
+        +toHTML(): void
         +getType(): string
     }
 
