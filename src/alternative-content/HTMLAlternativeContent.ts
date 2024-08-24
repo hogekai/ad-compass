@@ -1,9 +1,14 @@
 import { AlternativeContent } from "@/AlternativeContent";
 
+export type HTMLAlternativeContentProps = {
+    content: string;
+};  
+
 export class HTMLAlternativeContent implements AlternativeContent {
+    private type: string = "HTML";
     private content: string;
 
-    constructor({ content }: { content: string }) {
+    constructor({ content }: HTMLAlternativeContentProps) { 
         this.content = content;
     }
 
@@ -12,6 +17,6 @@ export class HTMLAlternativeContent implements AlternativeContent {
     }
 
     public getType(): string {
-        return "HTML";
+        return this.type;
     }
 }
