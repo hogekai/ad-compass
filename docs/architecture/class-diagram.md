@@ -2,21 +2,14 @@
 classDiagram
     class AdCompass {
         -alternativeContent: AlternativeContent
-        -adBlockDetector: AdBlockDetector
         -alternativeContentPlacer: AlternativeContentPlacer
         -eventEmitter: eventEmitter
 
         +constructor(options: AdCompassOptions)
-
-        +detectAdBlock(): Promise<boolean>
-        +placeAlternativeContent(): Promise<void>
+        -initialize()
 
         +on(eventType: AdCompassEventType, callback: Function): void
         +off(eventType: AdCompassEventType, callback: Function): void
-
-        +setAlternativeContent(content: AlternativeContent): void
-        +setAdBlockDetector(detector: AdBlockDetector): void
-        +setContentPlacer(placer: AlternativeContentPlacer): void
 
         -handleError(error: AdCompassError): void
     }
@@ -24,7 +17,6 @@ classDiagram
     class AdCompassOptions {
         <<interface>>
         +targetSelector: string
-        +adBlockDetector?: AdBlockDetector
         +alternativeContentPlacer?: AlternativeContentPlacer
         +alternativeContent?: AlternativeContent
     }
@@ -47,31 +39,16 @@ classDiagram
         +getType(): string
     }
 
-    class AdBlockDetector {
-        <<interface>>
-        +detect(): Promise<boolean>
-    }
-
-    class CompositeAdBlockDetector {
-        -adBlockDetectors: AdBlockDetector[]
-        +constructor(adBlockDetectors: AdBlockDetector[])
-        +detect(): Promise<boolean>
-    }
-
-    class AssetLoadDetector {
-        -assetUrl: string
-        +detect(): Promise<boolean>
-    }
-
     class EventEmitter {
         -listeners: Map<string, Function[]>
-        +emit(eventType: string, data: any): void
-        +on(eventType: string, callback: Function): void
-        +off(eventType: string, callback: Function): void
+        +emit(eventType: AdCompassEventType, data: any): void
+        +on(eventType: AdCompassEventType, callback: Function): void
+        +off(eventType: AdCompassEventType, callback: Function): void
     }
 
     class AlternativeContentPlacer {
         -strategy: PlacementStrategy
+        +isTargetEmpty(): boolean
         +place(content: AlternativeContent, targetSelector: string): Promise<HTMLElement>
     }
 
@@ -94,14 +71,10 @@ classDiagram
     }
 
     AdCompass *-- AlternativeContent
-    AdCompass *-- AdBlockDetector
     AdCompass *-- AlternativeContentPlacer
     AdCompass *-- EventEmitter
     AdCompass ..> AdCompassOptions
     AdCompass ..> AdCompassError
-
-    AdBlockDetector <|.. CompositeAdBlockDetector
-    AdBlockDetector <|.. AssetLoadDetector
 
     AlternativeContentPlacer ..> AlternativeContent
     AlternativeContentPlacer o-- PlacementStrategy   
