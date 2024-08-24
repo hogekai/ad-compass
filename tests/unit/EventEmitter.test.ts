@@ -8,7 +8,7 @@ describe('EventEmitter', () => {
 
         const callback = vi.fn();
         emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
-        emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, null);
+        emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
 
         expect(callback).toHaveBeenCalled();        
     });

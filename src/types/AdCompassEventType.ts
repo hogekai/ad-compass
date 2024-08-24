@@ -7,3 +7,10 @@ export const AdCompassEventType = {
 
 export type AdCompassEventType =
   (typeof AdCompassEventType)[keyof typeof AdCompassEventType];
+
+export interface AdCompassEventTypeMap {
+  [AdCompassEventType.AD_BLOCK_DETECT]: boolean;
+  [AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION]: {};
+  [AdCompassEventType.ALTERNATIVE_CONTENT_CLICK]: {};
+  [AdCompassEventType.ERROR]: Error;
+};
