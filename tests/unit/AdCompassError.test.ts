@@ -13,4 +13,10 @@ describe("AdCompassError", () => {
         expect(error.code).toBe(code);
         expect(error.name).toBe("AdCompassError");
     });
+
+    it('should be throwable and catch', () => {
+        expect(() => {
+            throw new AdCompassError(ErrorCode.UNKNOWN, 'Test error')
+        }).to.throw(AdCompassError, 'Test error');
+    });
 });
