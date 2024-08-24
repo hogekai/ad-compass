@@ -1,9 +1,14 @@
 import { i } from "vitest/dist/reporters-xEmem8D4.js";
-import { AdCompassEventType, AdCompassEventTypeMap } from "./types/AdCompassEventType";
+import {
+  AdCompassEventType,
+  AdCompassEventTypeMap,
+} from "./types/AdCompassEventType";
 
 export type EventData<T extends AdCompassEventType> = AdCompassEventTypeMap[T];
 
-export type EventCallback<T extends AdCompassEventType> = (data: EventData<T>) => void;
+export type EventCallback<T extends AdCompassEventType> = (
+  data: EventData<T>
+) => void;
 
 export class EventEmitter {
   private listeners: Map<AdCompassEventType, EventCallback<any>[]>;
@@ -22,7 +27,9 @@ export class EventEmitter {
     this.notifyListeners(listeners, data);
   }
 
-  private getEventListeners<T extends AdCompassEventType>(eventType: T): EventCallback<T>[] {
+  private getEventListeners<T extends AdCompassEventType>(
+    eventType: T
+  ): EventCallback<T>[] {
     const eventListener = this.listeners.get(eventType) as EventCallback<T>[];
 
     if (!eventListener) {
@@ -32,42 +39,56 @@ export class EventEmitter {
     return eventListener;
   }
 
-  private notifyListeners<T extends AdCompassEventType>(listeners: EventCallback<T>[], data: EventData<T>) {
-    listeners.forEach(listener => listener(data));
+  private notifyListeners<T extends AdCompassEventType>(
+    listeners: EventCallback<T>[],
+    data: EventData<T>
+  ) {
+    listeners.forEach((listener) => listener(data));
   }
 
   /**
    * Add a listener to an event
    * @param eventType The event type to listen to
    * @param listener The callback to call when the event is emitted
-   */   
-  public on<T extends AdCompassEventType>(eventType: T, listener: EventCallback<T>) {
+   */
+  public on<T extends AdCompassEventType>(
+    eventType: T,
+    listener: EventCallback<T>
+  ) {
     this.ensureListenerArrayExists(eventType);
     this.addEventListener(eventType, listener);
   }
 
-  private ensureListenerArrayExists<T extends AdCompassEventType>(eventType: T): void {
+  private ensureListenerArrayExists<T extends AdCompassEventType>(
+    eventType: T
+  ): void {
     if (!this.listeners.has(eventType)) {
       this.listeners.set(eventType, []);
     }
   }
 
-  private addEventListener<T extends AdCompassEventType>(eventType: T, listener: EventCallback<T>) {
+  private addEventListener<T extends AdCompassEventType>(
+    eventType: T,
+    listener: EventCallback<T>
+  ) {
     this.listeners.get(eventType)!.push(listener);
   }
 
-  public off<T extends AdCompassEventType>(eventType: AdCompassEventType, listener: EventCallback<T>) {
-    const offToListeners = this.listeners.get(eventType);
-    if (offToListeners) {
-      const existingListeners = this.listeners.get(eventType);
+  public off<T extends AdCompassEventType>(
+    eventType: T,
+    listener: EventCallback<T>
+  ) {
+    this.removeEventListeners(eventType, listener);
+  }
 
-      if (existingListeners) {
-        const filteredListeners = existingListeners.filter(
-          (existingListener) => existingListener !== listener
-        );
+  private removeEventListeners<T extends AdCompassEventType>(
+    eventType: T,
+    listener: EventCallback<T>
+  ) {
+    const filteredListeners = this.getEventListeners(eventType).filter(
+      (existingListener) => existingListener !== listener
+    );
 
-        this.listeners.set(eventType, filteredListeners);
-      }
-    }
+    this.listeners.set(eventType, filteredListeners);
   }
 }

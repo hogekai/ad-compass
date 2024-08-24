@@ -5,8 +5,8 @@ import { AdCompassEventType } from "@/types/AdCompassEventType";
 describe('EventEmitter', () => {
     it('should emit events', () => {
         const emitter = new EventEmitter();
-
         const callback = vi.fn();
+        
         emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
         emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
 
@@ -15,8 +15,8 @@ describe('EventEmitter', () => {
 
     it('should listen to events', () => {
         const emitter = new EventEmitter();
-
         const callback = vi.fn();
+
         emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
         emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
 
@@ -25,8 +25,8 @@ describe('EventEmitter', () => {
 
     it('should remove listeners', () => {
         const emitter = new EventEmitter();
-
         const callback = vi.fn();
+
         emitter.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
         emitter.off(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, callback);
         emitter.emit(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, {});
