@@ -1,25 +1,30 @@
 import { AlternativeContent } from "@/AlternativeContent";
+import { t } from "i18next";
 
-export type ImageAlternativeContentProps = {
+type BaseImageProps = {
     src: string;
     alt?: string;
     style?: string;
 };
 
+type AdditionalProps = {
+    [key: string]: string | number | boolean;
+};
+
+export type ImageAlternativeContentProps = BaseImageProps & AdditionalProps;
 export class ImageAlternativeContent implements AlternativeContent {
     private type: string = "Image";
-    private src: string;
-    private alt: string;
-    private style: string;
+    private props: ImageAlternativeContentProps;
 
-    constructor({ src, alt = '', style = ''}: ImageAlternativeContentProps) {
-        this.src = src;
-        this.alt = alt;
-        this.style = style;
+    constructor(props: ImageAlternativeContentProps) {
+        this.props = props;
     }
 
     public toHTML(): string {
-        return `<img src="${this.src}" alt="${this.alt}" style="${this.style}">`;
+        const attributes = Object.entries(this.props)
+            .map(([key, value]) => `${key}="${value}"`)
+            .join(' ');
+        return `<img ${attributes}>`;
     }
 
     public getType(): string {
