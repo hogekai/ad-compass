@@ -3,7 +3,7 @@ import { AppendChildStrategy } from "@/placement-strategy/AppendChildStrategy";
 import { describe, expect, it } from "vitest";
 
 describe("PlacementStrategy", () => {
-    it("Append child strategy test", () => {
+    it("Placement test with append child strategy", () => {
         const content = new HTMLAlternativeContent({  content: "<div>Test</div>" });
         const appendChildStrategy = new AppendChildStrategy();
 
