@@ -49,9 +49,10 @@ classDiagram
     }
 
     class AlternativeContentPlacer {
+        -targetElement: HTMLElement
         -strategy: PlacementStrategy
         +isTargetEmpty(): boolean
-        +place(content: AlternativeContent, targetSelector: string): Promise<HTMLElement>
+        +place(content: AlternativeContent): Promise<HTMLElement>
     }
 
     class PlacementStrategy {
