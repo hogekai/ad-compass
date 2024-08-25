@@ -1,6 +1,8 @@
+Certainly, I'll translate this documentation into English for you. Here's the English version:
+
 # ad-compass
 
-ad-compass is a TypeScript library for displaying alternative content when ad blockers are enabled.
+ad-compass is a TypeScript library for displaying alternative content when an ad blocker is active.
 
 ## Features
 
@@ -11,32 +13,63 @@ ad-compass is a TypeScript library for displaying alternative content when ad bl
 
 ## Installation
 
+npm:
 ```bash
 npm install ad-compass
+```
+
+cdn: 
+```html
+<script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
 ```
 
 ## Basic Usage
 
 ```typescript
-import AdCompass, { 
-  AdCompassEventType, 
+import AdCompass, {
+  AdCompassEventType,
   AppendChildStrategy,
-  HTMLAlternativeContent, 
-  AlternativeContentPlacer 
-} from 'ad-compass';
+  HTMLAlternativeContent,
+  AlternativeContentPlacer,
+} from "ad-compass";
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>Alternative content</div>'),
+  alternativeContent: new HTMLAlternativeContent({
+    content: "<div>Alternative Content</div>",
+  }),
   alternativeContentPlacer: new AlternativeContentPlacer({
     placementStrategy: new AppendChildStrategy(),
-    targetSelector: '#ad-container'
-  })
+    targetSelector: "#ad-container",
+  }),
 });
 
 adCompass.initialize();
 ```
 
 Note: `alternativeContentPlacer` is a required option.
+
+## Module Structure
+
+`src/index.ts`
+
+```typescript
+export {
+  AdCompassEventType,
+  ErrorCode,
+  AppendChildStrategy,
+  InsertBeforeStrategy,
+  HTMLAlternativeContent,
+  ImageAlternativeContent,
+  AlternativeContentPlacer,
+};
+
+export type {
+  PlacementStrategy,
+  AlternativeContent,
+}
+
+export default AdCompass;
+```
 
 ## Class Structure
 
@@ -62,10 +95,34 @@ constructor(options: AdCompassOptions)
 
 Interface representing alternative content.
 
-#### Implementing Classes
+#### Implementation Classes
 
 - `HTMLAlternativeContent`: Alternative content as an HTML string
 - `ImageAlternativeContent`: Alternative content as an image
+
+##### HTMLAlternativeContent
+
+```typescript
+export type HTMLAlternativeContentProps = {
+    content: string; // HTML string
+};
+```
+
+#### ImageAlternativeContent
+
+```typescript
+type BaseImageProps = {
+    src: string;
+    alt?: string;
+    style?: string;
+};
+
+type AdditionalProps = {
+    [key: string]: string | number | boolean;
+};
+
+export type ImageAlternativeContentProps = BaseImageProps & AdditionalProps;
+```
 
 ### AlternativeContentPlacer
 
@@ -86,9 +143,15 @@ type AlternativeContentPlacerProps = {
 
 ### PlacementStrategy
 
-Interface defining content placement strategies.
+Interface defining content placement strategy.
 
-#### Implementing Classes
+```typescript
+export interface PlacementStrategy {
+    place(content: AlternativeContent, targetElement: HTMLElement): Promise<HTMLElement>;  
+}
+```
+
+#### Implementation Classes
 
 - `AppendChildStrategy`: Strategy to append as a child element
 - `InsertBeforeStrategy`: Strategy to insert before an element
@@ -113,23 +176,26 @@ The `ErrorCode` enum is defined with the following error codes:
 ## Usage Example
 
 ```typescript
-import AdCompass, { 
-  AdCompassEventType, 
+import AdCompass, {
+  AdCompassEventType,
   AppendChildStrategy,
-  HTMLAlternativeContent, 
-  AlternativeContentPlacer 
-} from 'ad-compass';
+  HTMLAlternativeContent,
+  AlternativeContentPlacer,
+} from "ad-compass";
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>Content to display instead of ads</div>'),
+  alternativeContent: new HTMLAlternativeContent({
+    content: "<div>Alternative Content</div>",
+  }),
   alternativeContentPlacer: new AlternativeContentPlacer({
     placementStrategy: new AppendChildStrategy(),
-    targetSelector: '#ad-container'
-  })
+    targetSelector: "#ad-container",
+  }),
 });
 
 adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, () => {
-  console.log('Alternative content has been displayed');
+  console.log("Ad blocker is being used");
+  console.log("Alternative content has been displayed");
 });
 
 adCompass.initialize();
@@ -137,4 +203,4 @@ adCompass.initialize();
 
 ## License
 
-Released under the MIT License. See the [LICENSE](LICENSE) file for details.
+Published under the MIT License. See the [LICENSE](LICENSE) file for details.

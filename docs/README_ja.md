@@ -1,6 +1,6 @@
 # ad-compass
 
-ad-compassは、広告ブロッカーが有効になっている場合に代替コンテンツを表示するためのTypeScriptライブラリです。
+ad-compass は、広告ブロッカーが有効になっている場合に代替コンテンツを表示するための TypeScript ライブラリです。
 
 ## 特徴
 
@@ -11,32 +11,63 @@ ad-compassは、広告ブロッカーが有効になっている場合に代替�
 
 ## インストール
 
+npm:
 ```bash
 npm install ad-compass
+```
+
+cdn: 
+```html
+<script src="https://cdn.jsdelivr.net/npm/ad-compass@latest/dist/ad-compass.umd.js"></script>
 ```
 
 ## 基本的な使用方法
 
 ```typescript
-import AdCompass, { 
-  AdCompassEventType, 
+import AdCompass, {
+  AdCompassEventType,
   AppendChildStrategy,
-  HTMLAlternativeContent, 
-  AlternativeContentPlacer 
-} from 'ad-compass';
+  HTMLAlternativeContent,
+  AlternativeContentPlacer,
+} from "ad-compass";
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>代替コンテンツ</div>'),
+  alternativeContent: new HTMLAlternativeContent({
+    content: "<div>代替コンテンツ</div>",
+  }),
   alternativeContentPlacer: new AlternativeContentPlacer({
     placementStrategy: new AppendChildStrategy(),
-    targetSelector: '#ad-container'
-  })
+    targetSelector: "#ad-container",
+  }),
 });
 
 adCompass.initialize();
 ```
 
 注意: `alternativeContentPlacer`は必須のオプションです。
+
+## モジュール構造
+
+`src/index.ts`
+
+```typescript
+export {
+  AdCompassEventType,
+  ErrorCode,
+  AppendChildStrategy,
+  InsertBeforeStrategy,
+  HTMLAlternativeContent,
+  ImageAlternativeContent,
+  AlternativeContentPlacer,
+};
+
+export type {
+  PlacementStrategy,
+  AlternativeContent,
+}
+
+export default AdCompass;
+```
 
 ## クラス構造
 
@@ -64,12 +95,36 @@ constructor(options: AdCompassOptions)
 
 #### 実装クラス
 
-- `HTMLAlternativeContent`: HTML文字列としての代替コンテンツ
+- `HTMLAlternativeContent`: HTML 文字列としての代替コンテンツ
 - `ImageAlternativeContent`: 画像としての代替コンテンツ
+
+##### HTMLAlternativeContent
+
+```typescript
+export type HTMLAlternativeContentProps = {
+    content: string; // HTML文字列
+};
+```
+
+#### ImageAlternativeContent
+
+```typescript
+type BaseImageProps = {
+    src: string;
+    alt?: string;
+    style?: string;
+};
+
+type AdditionalProps = {
+    [key: string]: string | number | boolean;
+};
+
+export type ImageAlternativeContentProps = BaseImageProps & AdditionalProps;
+```
 
 ### AlternativeContentPlacer
 
-代替コンテンツを配置するためのクラス。AdCompassの初期化時に必須です。
+代替コンテンツを配置するためのクラス。AdCompass の初期化時に必須です。
 
 #### コンストラクタ
 
@@ -88,6 +143,12 @@ type AlternativeContentPlacerProps = {
 
 コンテンツ配置戦略を定義するインターフェース。
 
+```typescript
+export interface PlacementStrategy {
+    place(content: AlternativeContent, targetElement: HTMLElement): Promise<HTMLElement>;  
+}
+```
+
 #### 実装クラス
 
 - `AppendChildStrategy`: 子要素として追加する戦略
@@ -95,7 +156,7 @@ type AlternativeContentPlacerProps = {
 
 ## イベント
 
-AdCompassは以下のイベントを発行します：
+AdCompass は以下のイベントを発行します：
 
 - `ALTERNATIVE_CONTENT_IMPRESSION`: 代替コンテンツが表示されたとき
 - `ALTERNATIVE_CONTENT_CLICK`: 代替コンテンツがクリックされたとき
@@ -113,23 +174,26 @@ AdCompassは以下のイベントを発行します：
 ## 使用例
 
 ```typescript
-import AdCompass, { 
-  AdCompassEventType, 
+import AdCompass, {
+  AdCompassEventType,
   AppendChildStrategy,
-  HTMLAlternativeContent, 
-  AlternativeContentPlacer 
-} from 'ad-compass';
+  HTMLAlternativeContent,
+  AlternativeContentPlacer,
+} from "ad-compass";
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>広告の代わりに表示されるコンテンツ</div>'),
+  alternativeContent: new HTMLAlternativeContent({
+    content: "<div>代替コンテンツ</div>",
+  }),
   alternativeContentPlacer: new AlternativeContentPlacer({
     placementStrategy: new AppendChildStrategy(),
-    targetSelector: '#ad-container'
-  })
+    targetSelector: "#ad-container",
+  }),
 });
 
 adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, () => {
-  console.log('代替コンテンツが表示されました');
+  console.log("広告ブロッカーが使用されています");
+  console.log("代替コンテンツが表示されました");
 });
 
 adCompass.initialize();
@@ -137,4 +201,4 @@ adCompass.initialize();
 
 ## ライセンス
 
-MITライセンスの下で公開されています。詳細については[LICENSE](../LICENSE)ファイルを参照してください。
+MIT ライセンスの下で公開されています。詳細については[LICENSE](../LICENSE)ファイルを参照してください。
