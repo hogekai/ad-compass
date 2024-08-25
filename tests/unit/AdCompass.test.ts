@@ -5,6 +5,7 @@ import { MockAlternativeContent } from "tests/mock/MockAlternativeContent";
 import { MockPlacementStrategy } from "tests/mock/MockPlacementStrategy";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AdCompass } from "@/AdCompass";
+import { AdCompassEventType } from "@/types/AdCompassEventType";
 
 describe("AdCompass", () => {
   let adCompass: AdCompass;
@@ -19,7 +20,7 @@ describe("AdCompass", () => {
     targetElement.id = "target";
     document.body.innerHTML = "";
     document.body.appendChild(targetElement);
-    
+
     mockAlternativeContent = new MockAlternativeContent();
     mockPlacementStrategy = new MockPlacementStrategy();
     mockAlternativeContentPlacer = new AlternativeContentPlacer({
