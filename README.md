@@ -18,10 +18,12 @@ npm install ad-compass
 ## Basic Usage
 
 ```typescript
-import AdCompass from 'ad-compass';
-import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
-import { AlternativeContentPlacer } from 'ad-compass/content-placer';
-import { AppendChildStrategy } from 'ad-compass/placement-strategy';
+import AdCompass, { 
+  AdCompassEventType, 
+  AppendChildStrategy,
+  HTMLAlternativeContent, 
+  AlternativeContentPlacer 
+} from 'ad-compass';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>Alternative content</div>'),
@@ -35,26 +37,6 @@ adCompass.initialize();
 ```
 
 Note: `alternativeContentPlacer` is a required option.
-
-## Module Structure
-
-The `src/index.ts` file looks like this:
-
-```typescript
-import { AdCompass } from "./AdCompass";
-import { AdCompassEventType} from "./types/AdCompassEventType";
-import { ErrorCode } from "./types/ErrorCode";
-import { AppendChildStrategy, InsertBeforeStrategy } from "./placement-strategy/";
-
-export {
-  AdCompassEventType,
-  ErrorCode,
-  AppendChildStrategy,
-  InsertBeforeStrategy
-};
-
-export default AdCompass;
-```
 
 ## Class Structure
 
@@ -131,9 +113,12 @@ The `ErrorCode` enum is defined with the following error codes:
 ## Usage Example
 
 ```typescript
-import AdCompass, { AdCompassEventType, AppendChildStrategy } from 'ad-compass';
-import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
-import { AlternativeContentPlacer } from 'ad-compass/content-placer';
+import AdCompass, { 
+  AdCompassEventType, 
+  AppendChildStrategy,
+  HTMLAlternativeContent, 
+  AlternativeContentPlacer 
+} from 'ad-compass';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>Content to display instead of ads</div>'),
