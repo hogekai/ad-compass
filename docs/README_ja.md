@@ -18,10 +18,12 @@ npm install ad-compass
 ## 基本的な使用方法
 
 ```typescript
-import AdCompass from 'ad-compass';
-import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
-import { AlternativeContentPlacer } from 'ad-compass/content-placer';
-import { AppendChildStrategy } from 'ad-compass/placement-strategy';
+import AdCompass, { 
+  AdCompassEventType, 
+  AppendChildStrategy,
+  HTMLAlternativeContent, 
+  AlternativeContentPlacer 
+} from 'ad-compass';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>代替コンテンツ</div>'),
@@ -35,26 +37,6 @@ adCompass.initialize();
 ```
 
 注意: `alternativeContentPlacer`は必須のオプションです。
-
-## モジュール構造
-
-`src/index.ts`ファイルは以下のようになっています：
-
-```typescript
-import { AdCompass } from "./AdCompass";
-import { AdCompassEventType} from "./types/AdCompassEventType";
-import { ErrorCode } from "./types/ErrorCode";
-import { AppendChildStrategy, InsertBeforeStrategy } from "./placement-strategy/";
-
-export {
-  AdCompassEventType,
-  ErrorCode,
-  AppendChildStrategy,
-  InsertBeforeStrategy
-};
-
-export default AdCompass;
-```
 
 ## クラス構造
 
@@ -131,9 +113,12 @@ AdCompassは以下のイベントを発行します：
 ## 使用例
 
 ```typescript
-import AdCompass, { AdCompassEventType, AppendChildStrategy } from 'ad-compass';
-import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
-import { AlternativeContentPlacer } from 'ad-compass/content-placer';
+import AdCompass, { 
+  AdCompassEventType, 
+  AppendChildStrategy,
+  HTMLAlternativeContent, 
+  AlternativeContentPlacer 
+} from 'ad-compass';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>広告の代わりに表示されるコンテンツ</div>'),
