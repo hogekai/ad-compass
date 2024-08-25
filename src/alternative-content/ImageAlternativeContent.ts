@@ -1,5 +1,4 @@
 import { AlternativeContent } from "@/AlternativeContent";
-import { t } from "i18next";
 
 type BaseImageProps = {
     src: string;
@@ -12,6 +11,7 @@ type AdditionalProps = {
 };
 
 export type ImageAlternativeContentProps = BaseImageProps & AdditionalProps;
+
 export class ImageAlternativeContent implements AlternativeContent {
     private type: string = "Image";
     private props: ImageAlternativeContentProps;
