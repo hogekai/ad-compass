@@ -30,6 +30,10 @@ export class AlternativeContentPlacer {
     this.targetElement = targetElementBeforeEmptyConfirmation;
   }
 
+  /**
+   * Checks if the target element is empty. An element is considered empty if it has no child nodes or only script tags.
+   * @returns true if the target element is empty, false otherwise
+   */
   public isTargetEmpty(): boolean {
     const content = this.targetElement.cloneNode(true) as HTMLElement;
     const scripts = content.getElementsByTagName("script");
@@ -41,6 +45,11 @@ export class AlternativeContentPlacer {
     return content.innerHTML.trim().length === 0;
   }
 
+  /**
+   * Places the alternative content into the target element.
+   * @param content Alternative content
+   * @returns The element that was placed
+   */ 
   public async place(content: AlternativeContent): Promise<HTMLElement> {
     return this.placementStrategy.place(content, this.targetElement);
   }
