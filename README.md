@@ -1,5 +1,3 @@
-Certainly, I'll translate this documentation into English for you. Here's the English version:
-
 # ad-compass
 
 ad-compass is a TypeScript library for displaying alternative content when an ad blocker is active.
