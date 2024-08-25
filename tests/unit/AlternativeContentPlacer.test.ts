@@ -1,7 +1,8 @@
 import { AlternativeContentPlacer } from "@/AlternativeContentPlacer";
 import { PlacementStrategy } from "@/PlacementStrategy";
+import { MockAlternativeContent } from "tests/mock/MockAlternativeContent";
 import { MockPlacementStrategy } from "tests/mock/MockPlacementStrategy";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 describe("AlternativeContentPlacer", () => {
   let placer: AlternativeContentPlacer;
@@ -60,6 +61,17 @@ describe("AlternativeContentPlacer", () => {
       const result = placer.isTargetEmpty();
 
       expect(result).toBe(false);
+    });
+  });
+
+  describe("place", () => {
+    it("should call placement strategy with target element", async () => {
+        const mockAlternativeContent = new MockAlternativeContent();
+        const placeSpy = vi.spyOn(mockStrategy, "place");
+
+        await placer.place(mockAlternativeContent);
+
+        expect(placeSpy).toHaveBeenCalledWith(mockAlternativeContent, targetElement);
     });
   });
 });

@@ -1,4 +1,5 @@
 import { AdCompassError } from "./AdCompassError";
+import { AlternativeContent } from "./AlternativeContent";
 import { PlacementStrategy } from "./PlacementStrategy";
 import { ErrorCode } from "./types/ErrorCode";
 
@@ -31,12 +32,16 @@ export class AlternativeContentPlacer {
 
   public isTargetEmpty(): boolean {
     const content = this.targetElement.cloneNode(true) as HTMLElement;
-    const scripts = content.getElementsByTagName('script');
-    
+    const scripts = content.getElementsByTagName("script");
+
     while (scripts.length > 0) {
       scripts[0].parentNode?.removeChild(scripts[0]);
     }
-  
+
     return content.innerHTML.trim().length === 0;
+  }
+
+  public async place(content: AlternativeContent): Promise<HTMLElement> {
+    return this.placementStrategy.place(content, this.targetElement);
   }
 }
