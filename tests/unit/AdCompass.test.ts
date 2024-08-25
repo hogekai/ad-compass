@@ -37,4 +37,11 @@ describe("AdCompass", () => {
   it("should initialize correctly", () => {
     expect(adCompass).toBeDefined();
   });
+
+  it('should handle events correctly', async () => {
+    const mockCallback = vi.fn();
+    adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, mockCallback);
+
+    expect(mockCallback).toHaveBeenCalled();  
+  });
 });
