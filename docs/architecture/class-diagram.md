@@ -16,7 +16,6 @@ classDiagram
 
     class AdCompassOptions {
         <<interface>>
-        +targetSelector: string
         +alternativeContentPlacer?: AlternativeContentPlacer
         +alternativeContent?: AlternativeContent
     }
@@ -98,6 +97,7 @@ classDiagram
 
     class ErrorCode {
         <<enumeration>>
+        TARGET_ELEMENT_NOT_FOUND
         INITIALIZATION_FAILED
         CONTENT_PLACE_FAILED
         UNKNOWN
