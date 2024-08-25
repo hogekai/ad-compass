@@ -5,7 +5,7 @@ import { MockAlternativeContent } from "tests/mock/MockAlternativeContent";
 import { MockPlacementStrategy } from "tests/mock/MockPlacementStrategy";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AdCompass } from "@/AdCompass";
-import { AdCompassEventType } from "@/types/AdCompassEventType";
+import { AdCompassEventType, AdCompassEventTypeMap } from "@/types/AdCompassEventType";
 
 describe("AdCompass", () => {
   let adCompass: AdCompass;
@@ -36,12 +36,19 @@ describe("AdCompass", () => {
 
   it("should initialize correctly", () => {
     expect(adCompass).toBeDefined();
+    adCompass.initialize();
   });
 
   it('should handle events correctly', async () => {
     const mockCallback = vi.fn();
+    const mockCallback2 = vi.fn();
     adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, mockCallback);
+    adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, mockCallback2);
+    adCompass.off(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, mockCallback2);
+
+    await adCompass.initialize();
 
     expect(mockCallback).toHaveBeenCalled();  
+    expect(mockCallback2).not.toHaveBeenCalled();
   });
 });

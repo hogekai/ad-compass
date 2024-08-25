@@ -6,7 +6,7 @@ classDiagram
         -eventEmitter: eventEmitter
 
         +constructor(options: AdCompassOptions)
-        -initialize()
+        +initialize()
 
         +on(eventType: AdCompassEventType, callback: Function): void
         +off(eventType: AdCompassEventType, callback: Function): void
