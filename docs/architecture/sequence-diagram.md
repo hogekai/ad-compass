@@ -7,7 +7,7 @@ sequenceDiagram
     participant EE as EventEmitter
 
     User->>+AC: new AdCompass(options)
-    AC->>AC: Initialize components
+    User->>AC: Initialize()
     AC-->>-User: AdCompass instance
 
     AC->>+ACP: isTargetEmpty()
