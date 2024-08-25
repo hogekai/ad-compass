@@ -1,3 +1,5 @@
+import { AdCompassError } from "@/AdCompassError";
+
 export const AdCompassEventType = {
   ALTERNATIVE_CONTENT_IMPRESSION: "ALTERNATIVE_CONTENT_IMPRESSION",
   ALTERNATIVE_CONTENT_CLICK: "ALTERNATIVE_CONTENT_CLICK",
@@ -10,5 +12,5 @@ export type AdCompassEventType =
 export interface AdCompassEventTypeMap {
   [AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION]: {};
   [AdCompassEventType.ALTERNATIVE_CONTENT_CLICK]: {};
-  [AdCompassEventType.ERROR]: Error;
+  [AdCompassEventType.ERROR]: AdCompassError;
 };

@@ -51,4 +51,15 @@ describe("AdCompass", () => {
     expect(mockCallback).toHaveBeenCalled();  
     expect(mockCallback2).not.toHaveBeenCalled();
   });
+
+  it('should handle errors correctly', async () => {
+    mockAlternativeContentPlacer.isTargetEmpty = () => { throw new Error(); };
+    
+    const mockCallback = vi.fn();
+    adCompass.on(AdCompassEventType.ERROR, mockCallback);
+
+    await adCompass.initialize();
+
+    expect(mockCallback).toHaveBeenCalled();
+  });
 });
