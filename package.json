@@ -4,19 +4,11 @@
   "version": "0.3.4",
   "scripts": {
     "dev": "vite",
-    "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts && vite build",
-    "build:type": "dts-bundle-generator -o dist/ad-compass.d.ts src/ad-compass.ts",
+    "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/index.ts && vite build",
+    "build:type": "dts-bundle-generator -o dist/ad-compass.d.ts src/index.ts",
     "preview": "vite preview",
     "test": "vitest"
   },
-  "keywords": [
-    "adblock",
-    "adblocker",
-    "addetection",
-    "adblockerdetection",
-    "detectads",
-    "adblockdetector"
-  ],
   "main": "./dist/ad-compass.umd.js",
   "module": "./dist/ad-compass.mjs",
   "types": "./dist/ad-compass.d.ts",
