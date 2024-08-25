@@ -20,13 +20,21 @@ npm install ad-compass
 ```typescript
 import AdCompass from 'ad-compass';
 import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
+import { AlternativeContentPlacer } from 'ad-compass/content-placer';
+import { AppendChildStrategy } from 'ad-compass/placement-strategy';
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>代替コンテンツ</div>')
+  alternativeContent: new HTMLAlternativeContent('<div>代替コンテンツ</div>'),
+  alternativeContentPlacer: new AlternativeContentPlacer({
+    placementStrategy: new AppendChildStrategy(),
+    targetSelector: '#ad-container'
+  })
 });
 
 adCompass.initialize();
 ```
+
+注意: `alternativeContentPlacer`は必須のオプションです。
 
 ## モジュール構造
 
@@ -60,7 +68,7 @@ export default AdCompass;
 constructor(options: AdCompassOptions)
 ```
 
-- `options`: 初期化オプション（オプショナル）
+- `options`: 初期化オプション（`alternativeContentPlacer`は必須）
 
 #### メソッド
 
@@ -76,6 +84,23 @@ constructor(options: AdCompassOptions)
 
 - `HTMLAlternativeContent`: HTML文字列としての代替コンテンツ
 - `ImageAlternativeContent`: 画像としての代替コンテンツ
+
+### AlternativeContentPlacer
+
+代替コンテンツを配置するためのクラス。AdCompassの初期化時に必須です。
+
+#### コンストラクタ
+
+```typescript
+constructor(props: AlternativeContentPlacerProps)
+```
+
+```typescript
+type AlternativeContentPlacerProps = {
+  placementStrategy: PlacementStrategy;
+  targetSelector: string;
+};
+```
 
 ### PlacementStrategy
 
@@ -112,7 +137,10 @@ import { AlternativeContentPlacer } from 'ad-compass/content-placer';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>広告の代わりに表示されるコンテンツ</div>'),
-  alternativeContentPlacer: new AlternativeContentPlacer(document.getElementById('ad-container')!, new AppendChildStrategy())
+  alternativeContentPlacer: new AlternativeContentPlacer({
+    placementStrategy: new AppendChildStrategy(),
+    targetSelector: '#ad-container'
+  })
 });
 
 adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, () => {
