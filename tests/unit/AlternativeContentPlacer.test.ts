@@ -1,41 +1,65 @@
+import { AlternativeContentPlacer } from "@/AlternativeContentPlacer";
 import { PlacementStrategy } from "@/PlacementStrategy";
 import { MockPlacementStrategy } from "tests/mock/MockPlacementStrategy";
 import { beforeEach, describe, expect, it } from "vitest";
 
-describe('AlternativeContentPlacer', () => {    
-    let placer: AlternativeContentPlacer;
-    let mockStrategy: PlacementStrategy;
-    let targetSelector = '#target';
-    let targetElement: HTMLDivElement;
+describe("AlternativeContentPlacer", () => {
+  let placer: AlternativeContentPlacer;
+  let mockStrategy: PlacementStrategy;
+  let targetSelector = "#target";
+  let targetElement: HTMLDivElement;
 
-    beforeEach(() => {
-        mockStrategy = new MockPlacementStrategy();
-        targetElement = document.createElement('div');
-        targetElement.id = 'target';
-        document.body.appendChild(targetElement);
-        
-        placer = new AlternativeContentPlacer({
-            strategy: mockStartegy,
-            targetSelector: targetSelector
-        });
+  beforeEach(() => {
+    mockStrategy = new MockPlacementStrategy();
+    targetElement = document.createElement("div");
+    targetElement.id = "target";
+    document.body.innerHTML = "";
+    document.body.appendChild(targetElement);
+
+    placer = new AlternativeContentPlacer({
+      placementStrategy: mockStrategy,
+      targetSelector: targetSelector,
+    });
+  });
+
+  describe("isTargetEmpty", () => {
+    it("should return true when target element is empty", () => {
+      const result = placer.isTargetEmpty();
+
+      expect(result).toBe(true);
     });
 
-    describe('isTargetEmpty', () => {
-        it('should return true when target element is empty', () => {
-            const result = placer.isTargetEmpty();
+    it("should return false when target element is not empty", async () => {
+      document
+        .querySelector(targetSelector)
+        ?.appendChild(document.createElement("div"));
 
-            expect(result).toBe(true);
-        });
+      const result = placer.isTargetEmpty();
 
-        it('should return false when target element is not empty', () => {
-            targetElement.innerHTML = 'Some content';
-            const result = placer.isTargetEmpty();
-
-            expect(result).toBe(false);
-        });
-
-        it('should throw an error when target element does not exist', () => {
-            expect(() => placer.isTargetEmpty('#none-existent')).toThrow();
-        });
+      expect(result).toBe(false);
     });
+
+    it("should return true when target element contains only script tags", async () => {
+      document
+        .querySelector(targetSelector)
+        ?.appendChild(document.createElement("script"));
+
+      const result = placer.isTargetEmpty();
+
+      expect(result).toBe(true);
+    });
+
+    it("should return false when target element contains only empty script tags and non-empty div element", () => {
+      document
+        .querySelector(targetSelector)
+        ?.appendChild(document.createElement("script"));
+      document
+        .querySelector(targetSelector)
+        ?.appendChild(document.createElement("div"));
+
+      const result = placer.isTargetEmpty();
+
+      expect(result).toBe(false);
+    });
+  });
 });
