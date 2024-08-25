@@ -8,6 +8,7 @@ import {
 } from "./types/AdCompassEventType";
 import { AdCompassOptions } from "./types/AdCompassOptions";
 import { ErrorCode } from "./types/ErrorCode";
+import { wait } from "./utils/wait";
 
 export class AdCompass {
   private alternativeContentPlacer: AlternativeContentPlacer;
@@ -25,6 +26,8 @@ export class AdCompass {
    */
   public async initialize() {
     try {
+      await wait(5000);
+
       if (this.alternativeContentPlacer.isTargetEmpty()) {
         await this.alternativeContentPlacer.place(this.alternativeContent);
         this.eventEmitter.emit("ALTERNATIVE_CONTENT_IMPRESSION", {});
