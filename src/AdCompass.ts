@@ -26,7 +26,7 @@ export class AdCompass {
    */
   public async initialize() {
     try {
-      await wait(5000);
+      await wait(100);
 
       if (this.alternativeContentPlacer.isTargetEmpty()) {
         await this.alternativeContentPlacer.place(this.alternativeContent);
