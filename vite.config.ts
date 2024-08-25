@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import autoprefixer from "autoprefixer";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-import terser from "@rollup/plugin-terser";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +15,7 @@ export default defineConfig({
     emptyOutDir: false,
     minify: false,
     lib: {
-      entry: resolve(__dirname, "src/ad-compass.ts"),
+      entry: resolve(__dirname, "src/index.ts"),
       name: "AdCompass",
       fileName: "ad-compass",
     },
