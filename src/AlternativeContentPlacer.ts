@@ -49,7 +49,7 @@ export class AlternativeContentPlacer {
    * Places the alternative content into the target element.
    * @param content Alternative content
    * @returns The element that was placed
-   */ 
+   */
   public async place(content: AlternativeContent): Promise<HTMLElement> {
     return this.placementStrategy.place(content, this.targetElement);
   }

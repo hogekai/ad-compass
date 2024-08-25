@@ -61,7 +61,7 @@ export class AdCompass {
   /**
    * Unsubscribes from an event.
    * @param eventType AdCompass event type
-   * @param callback
+   * @param callback Callback function
    **/
   public off<T extends keyof AdCompassEventTypeMap>(
     eventType: T,
