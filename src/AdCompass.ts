@@ -12,6 +12,8 @@ export class AdCompass {
     this.alternativeContentPlacer = options.alternativeContentPlacer;
     this.alternativeContent = options.alternativeContent;
     this.eventEmitter = new EventEmitter();
+
+    this.initialize();
   }
 
   public async initialize() {
