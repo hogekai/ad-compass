@@ -20,13 +20,21 @@ npm install ad-compass
 ```typescript
 import AdCompass from 'ad-compass';
 import { HTMLAlternativeContent } from 'ad-compass/alternative-content';
+import { AlternativeContentPlacer } from 'ad-compass/content-placer';
+import { AppendChildStrategy } from 'ad-compass/placement-strategy';
 
 const adCompass = new AdCompass({
-  alternativeContent: new HTMLAlternativeContent('<div>Alternative content</div>')
+  alternativeContent: new HTMLAlternativeContent('<div>Alternative content</div>'),
+  alternativeContentPlacer: new AlternativeContentPlacer({
+    placementStrategy: new AppendChildStrategy(),
+    targetSelector: '#ad-container'
+  })
 });
 
 adCompass.initialize();
 ```
+
+Note: `alternativeContentPlacer` is a required option.
 
 ## Module Structure
 
@@ -60,7 +68,7 @@ The main class that provides the core functionality of the library.
 constructor(options: AdCompassOptions)
 ```
 
-- `options`: Initialization options (optional)
+- `options`: Initialization options (`alternativeContentPlacer` is required)
 
 #### Methods
 
@@ -76,6 +84,23 @@ Interface representing alternative content.
 
 - `HTMLAlternativeContent`: Alternative content as an HTML string
 - `ImageAlternativeContent`: Alternative content as an image
+
+### AlternativeContentPlacer
+
+Class for placing alternative content. Required when initializing AdCompass.
+
+#### Constructor
+
+```typescript
+constructor(props: AlternativeContentPlacerProps)
+```
+
+```typescript
+type AlternativeContentPlacerProps = {
+  placementStrategy: PlacementStrategy;
+  targetSelector: string;
+};
+```
 
 ### PlacementStrategy
 
@@ -112,7 +137,10 @@ import { AlternativeContentPlacer } from 'ad-compass/content-placer';
 
 const adCompass = new AdCompass({
   alternativeContent: new HTMLAlternativeContent('<div>Content to display instead of ads</div>'),
-  alternativeContentPlacer: new AlternativeContentPlacer(document.getElementById('ad-container')!, new AppendChildStrategy())
+  alternativeContentPlacer: new AlternativeContentPlacer({
+    placementStrategy: new AppendChildStrategy(),
+    targetSelector: '#ad-container'
+  })
 });
 
 adCompass.on(AdCompassEventType.ALTERNATIVE_CONTENT_IMPRESSION, () => {
