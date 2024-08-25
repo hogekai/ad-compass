@@ -152,4 +152,4 @@ adCompass.initialize();
 
 ## ライセンス
 
-MITライセンスの下で公開されています。詳細については[LICENSE](LICENSE)ファイルを参照してください。
+MITライセンスの下で公開されています。詳細については[LICENSE](../LICENSE)ファイルを参照してください。
