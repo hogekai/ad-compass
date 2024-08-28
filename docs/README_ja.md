@@ -44,7 +44,7 @@ const adCompass = new AdCompass({
 adCompass.initialize();
 ```
 
-注意: `alternativeContentPlacer`は必須のオプションです。
+注意: CDNでの利用時に、AdCompassインスタンスを参照したい場合、AdCompass.defaultを参照してください。
 
 ## モジュール構造
 

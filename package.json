@@ -1,7 +1,7 @@
 {
   "name": "ad-compass",
   "private": false,
-  "version": "0.4.7",
+  "version": "0.4.8",
   "scripts": {
     "dev": "vite",
     "build": "dts-bundle-generator -o dist/ad-compass.d.ts src/index.ts && vite build",
@@ -43,9 +43,5 @@
     "vite-plugin-lib-inject-css": "^2.0.1",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.5.2"
-  },
-  "dependencies": {
-    "i18next": "^23.11.2",
-    "i18next-browser-languagedetector": "^7.2.1"
   }
 }
