@@ -5,13 +5,102 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AdCompass テスト用ページ</title>
+
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/prebid.js@8.6.2/dist/prebid.js"
+    ></script>
+
+    <script>
+      var sizes = [[300, 250]];
+      var PREBID_TIMEOUT = 700;
+
+      var adUnits = [
+        {
+          code: "/19968336/header-bid-tag-1",
+          mediaTypes: {
+            banner: {
+              sizes: sizes,
+            },
+          },
+          bids: [
+            {
+              bidder: "appnexus",
+              params: {
+                placementId: 13144370,
+              },
+            },
+          ],
+        },
+      ];
+
+      // ======== DO NOT EDIT BELOW THIS LINE =========== //
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      googletag.cmd.push(function () {
+        googletag.pubads().disableInitialLoad();
+      });
+
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      pbjs.que.push(function () {
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+          bidsBackHandler: initAdserver,
+        });
+      });
+
+      function initAdserver() {
+        if (pbjs.initAdserverSet) return;
+        pbjs.initAdserverSet = true;
+        googletag.cmd.push(function () {
+          pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
+          googletag.pubads().refresh();
+        });
+      }
+
+      setTimeout(function () {
+        initAdserver();
+      }, PREBID_TIMEOUT);
+
+      googletag.cmd.push(function () {
+        googletag
+          .defineSlot("/19968336/header-bid-tag-1", sizes, "div-1")
+          .addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+      });
+    </script>
   </head>
   <body>
     <div id="app"></div>
     <script src="/dist/ad-compass.umd.js"></script>
+    <h5>Div-1</h5>
+    <div id="div-1" style="min-height: 250px">
+      <script type="text/javascript">
+        googletag.cmd.push(function () {
+          googletag.display("div-1");
+        });
+      </script>
+    </div>
+
     <script>
-      const adCompass = new AdCompass({ daySpan: 1, });
-      adCompass.run();
+      const adCompass = new AdCompass.default({
+        alternativeContent: new AdCompass.HTMLAlternativeContent({
+          content: "<div>Alternative Content</div>",
+        }),
+        alternativeContentPlacer: new AdCompass.AlternativeContentPlacer({
+          placementStrategy: new AdCompass.AppendChildStrategy(),
+          targetSelector: "#div-1",
+        }),
+      });
+
+      adCompass.initialize();
     </script>
   </body>
 </html>

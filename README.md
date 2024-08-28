@@ -44,7 +44,8 @@ const adCompass = new AdCompass({
 adCompass.initialize();
 ```
 
-Note: `alternativeContentPlacer` is a required option.
+Note: If you wish to reference an AdCompass instance when using the CDN, please refer to AdCompass.default.
+
 
 ## Module Structure
 
